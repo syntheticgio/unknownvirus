@@ -25,6 +25,9 @@ RUN git clone https://github.com/najoshi/sickle.git
 WORKDIR /sickle/
 RUN make
 
+RUN wget https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets -P /usr/local/bin
+RUN chmod a+x /usr/local/bin/datasets
+
 # Since we downloaded the binaries, we will need to add the binaries' directory to our PATH variable.
 # The PATH variable specifies where the operating system will look when you type a command on the command line.
 # If the command executable exists in any of the directories specified in the PATH variable, it will be able to
