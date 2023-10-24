@@ -9,7 +9,7 @@ RUN apt -qq update
 # The second is that we are going to install a program called WGET along with the git program.
 # Normally when you run it asks you if you're sure - the -y automatically answers that with yes. This is normally just a nice
 # to have, but in a docker build it is essential since you're not able to interact with the build process as it is running.
-RUN apt install -y wget git build-essential zlib1g-dev vim
+RUN apt install -y wget git build-essential zlib1g-dev vim automake libgsl0-dev liblzma-dev libbz2-dev libcurl4-openssl-dev
 
 # Download the SRA Toolkit tools.  The download page can be found at https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit
 # WGET is a tool that can download a file given a link to the file
@@ -33,11 +33,23 @@ RUN git clone https://github.com/lh3/bwa.git
 WORKDIR /bwa/
 RUN make
 
+WORKDIR /
+RUN git clone https://github.com/dzerbino/velvet.git
+WORKDIR /velvet/
+RUN make
+
+WORKDIR /
+RUN git clone --recurse-submodules https://github.com/samtools/htslib.git
+RUN git clone https://github.com/samtools/bcftools.git
+WORKDIR /bcftools/
+RUN autoheader && autoconf && ./configure --enable-libgsl
+RUN make
+
 # Since we downloaded the binaries, we will need to add the binaries' directory to our PATH variable.
 # The PATH variable specifies where the operating system will look when you type a command on the command line.
 # If the command executable exists in any of the directories specified in the PATH variable, it will be able to
 # execute from anywhere in the system.
-ENV PATH="${PATH}:/sratoolkit.3.0.7-ubuntu64.tar.gz/bin:/sickle:/bwa"
+ENV PATH="${PATH}:/sratoolkit.3.0.7-ubuntu64.tar.gz/bin:/sickle:/bwa:/velvet:/bcftools"
 
 # Going to set our working directory as /bioinformatics_class/
 WORKDIR /bioinformatics_class/
