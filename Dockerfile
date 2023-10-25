@@ -49,7 +49,7 @@ RUN make
 # The PATH variable specifies where the operating system will look when you type a command on the command line.
 # If the command executable exists in any of the directories specified in the PATH variable, it will be able to
 # execute from anywhere in the system.
-ENV PATH="${PATH}:/sratoolkit.3.0.7-ubuntu64.tar.gz/bin:/sickle:/bwa:/velvet:/bcftools"
+ENV PATH="${PATH}:/sratoolkit.3.0.7-ubuntu64/bin:/sickle:/bwa:/velvet:/bcftools"
 
 # Going to set our working directory as /bioinformatics_class/
 WORKDIR /bioinformatics_class/
