@@ -1,2 +1,2 @@
-image:
-  file: Dockerfile
+image: ghcr.io/syntheticgio/unknownvirus:sha256-71a41506c0bf6a055ba69d54557f583422870fde721e12c00cc368435275ae15.sig
+  #file: Dockerfile
