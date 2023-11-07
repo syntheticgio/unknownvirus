@@ -49,6 +49,10 @@ WORKDIR /
 RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip
 RUN unzip fastqc_v0.12.1.zip
 
+RUN wget http://opengene.org/fastp/fastp
+RUN chmod a+x fastp
+RUN mv fastp /usr/local/bin/
+
 # Since we downloaded the binaries, we will need to add the binaries' directory to our PATH variable.
 # The PATH variable specifies where the operating system will look when you type a command on the command line.
 # If the command executable exists in any of the directories specified in the PATH variable, it will be able to
