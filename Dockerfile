@@ -4,12 +4,12 @@ FROM ubuntu:22.04
 # The first is to update the repository list.  This is so we know all the different programs that are available to download.
 # The -qq flag stops the program from adding a lot of output to the screen.  This is purely for visual reasons and is
 # typical in a docker build.
-RUN apt -qq update
+RUN apt-get -qq update
 
 # The second is that we are going to install a program called WGET along with the git program.
 # Normally when you run it asks you if you're sure - the -y automatically answers that with yes. This is normally just a nice
 # to have, but in a docker build it is essential since you're not able to interact with the build process as it is running.
-RUN apt install -y wget git build-essential zlib1g-dev vim automake libgsl0-dev liblzma-dev libbz2-dev libcurl4-openssl-dev zip samtools tabix default-jre
+RUN apt-get install -y wget git build-essential zlib1g-dev vim automake libgsl0-dev liblzma-dev libbz2-dev libcurl4-openssl-dev zip samtools tabix default-jre
 
 # Download the SRA Toolkit tools.  The download page can be found at https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit
 # WGET is a tool that can download a file given a link to the file
